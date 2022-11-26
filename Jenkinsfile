@@ -46,7 +46,7 @@ pipeline {
     stage('Run Gatling Image') {
          steps{
              script {
-                    sh "docker run --rm -it -v vol1GatData:/var/lib/gatling gatling-runner -r ${AWS_REPORT_BUCKET}-p ${PROFILE}"
+                    sh "docker run --rm -it -v vol1GatData:/var/lib/gatling gatling-runner -r ${AWS_REPORT_BUCKET} -p ${PROFILE}"
              }
            }
         }
