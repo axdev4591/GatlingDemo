@@ -10,10 +10,38 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <encoding>UTF-8</encoding>
-
+    <scala.version>3.2.1</scala.version>
+    <scala-maven-plugin.version>3.3.1</scala-maven-plugin.version>
     <gatling.version>3.6.1</gatling.version>
     <gatling-maven-plugin.version>3.1.2</gatling-maven-plugin.version>
   </properties>
+
+
+
+  <profiles>
+    <profile>
+      <id>run test</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <reportsOnly></reportsOnly>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>create HTML report</id>
+      <activation>
+        <property>
+          <name>generateReport</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <properties>
+        <reportsOnly>${project.basedir}/target/gatling/</reportsOnly>
+      </properties>
+    </profile>
+  </profiles>
 
   <dependencies>
     <dependency>
@@ -40,6 +68,22 @@
         <groupId>io.gatling</groupId>
         <artifactId>gatling-maven-plugin</artifactId>
         <version>${gatling-maven-plugin.version}</version>
+
+
+        <executions>
+          <execution>
+            <configuration>
+              <args>
+                <arg>-target:jvm-1.8</arg>
+                <arg>-deprecation</arg>
+                <arg>-feature</arg>
+                <arg>-unchecked</arg>
+                <arg>-language:implicitConversions</arg>
+                <arg>-language:postfixOps</arg>
+              </args>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
