@@ -54,17 +54,15 @@ pipeline {
                 sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
          }
         }
-      }
     }
 
      // Run Gatling Image
     stage('Pushing to ECR') {
-     steps{
-         script {
-                sh "docker run --rm -v ${HOME}/.aws/credentials:/root/.aws/credentials:ro gatling-runner -r ${AWS_REPORT_BUCKET}-p ${PROFILE}"
-         }
-        }
-      }
+         steps{
+             script {
+                    sh "docker run --rm -v ${HOME}/.aws/credentials:/root/.aws/credentials:ro gatling-runner -r ${AWS_REPORT_BUCKET}-p ${PROFILE}"
+             }
+           }
     }
 
 }
