@@ -57,7 +57,7 @@ pipeline {
     }
 
      // Run Gatling Image
-    stage('Pushing to ECR') {
+    stage('Run Gatling Image') {
          steps{
              script {
                     sh "docker run --rm -v ${HOME}/.aws/credentials:/root/.aws/credentials:ro gatling-runner -r ${AWS_REPORT_BUCKET}-p ${PROFILE}"
