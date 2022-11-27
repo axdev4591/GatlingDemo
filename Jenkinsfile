@@ -46,6 +46,7 @@ pipeline {
     stage('Run Gatling Image') {
          steps{
              script {
+<<<<<<< HEAD
                     sh "docker run --rm -it -v vol1GatData:/var/lib/gatling gatling-runner -r ${AWS_REPORT_BUCKET} -p ${PROFILE}"
              }
            }
@@ -61,3 +62,20 @@ pipeline {
     }
     }
 }
+=======
+                    sh "docker run --rm -t -v vol1GatData:/var/lib/gatling gatling-runner -r ${AWS_REPORT_BUCKET} -p ${PROFILE}"
+             }
+           }
+        }
+        
+     stage('Create report') {
+        steps{
+           script {
+              sh "./scripts/generateHTMLReport.sh -r ${AWS_REPORT_BUCKET}"
+              gatlingArchive()
+           }
+        }
+    }
+    }
+}
+>>>>>>> 4935cc750b33396b1842139e52a6db78b9adec2
