@@ -42,7 +42,7 @@ fi
 rm -rf target/gatling/*
 
 # Run load test
-mvn gatling:test -o
+mvn gatling:test
 
 #Upload reports
 for _dir in target/gatling/*/
