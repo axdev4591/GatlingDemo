@@ -22,11 +22,6 @@ pipeline {
             }
         }
 
-        stage('Cloning Git') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/axdev4591/GatlingDemo.git']]])
-            }
-        }
 
     // Building Docker images
     stage('Building image') {
@@ -35,15 +30,6 @@ pipeline {
           dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
         }
       }
-    }
-
-    stage('Create report') {
-        steps{
-           script {
-              sh "./scripts/generateHTMLReport.sh -r ${AWS_REPORT_BUCKET}"
-              gatlingArchive()
-           }
-        }
     }
 
     // Uploading Docker images into AWS ECR
@@ -57,14 +43,21 @@ pipeline {
     }
 
      // Run Gatling Image
-    stage('Pushing to ECR') {
+    stage('Run Gatling Image') {
          steps{
              script {
-                    sh "docker run --rm -v ${HOME}/.aws/credentials:/root/.aws/credentials:ro gatling-runner -r ${AWS_REPORT_BUCKET}-p ${PROFILE}"
+                    sh "docker run --rm -it -v vol1GatData:/var/lib/gatling gatling-runner -r ${AWS_REPORT_BUCKET} -p ${PROFILE}"
              }
            }
-    }
+        }
 
+     stage('Create report') {
+        steps{
+           script {
+              sh "./scripts/generateHTMLReport.sh -r ${AWS_REPORT_BUCKET}"
+              gatlingArchive()
+           }
+        }
     }
-
+    }
 }
