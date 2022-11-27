@@ -41,7 +41,7 @@ fi
 ## Clean reports
 rm -rf target/gatling/*
 
-# Run load test
+# Run gatling load test
 mvn gatling:test
 
 #Upload reports
