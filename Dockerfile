@@ -27,8 +27,5 @@ RUN mvn -B install
 
 RUN ["chmod", "+x", "run.sh"]
 
-<<<<<<< HEAD
 ENTRYPOINT ["./run.sh"]
-=======
-ENTRYPOINT ["./run.sh"]
->>>>>>> 4935cc750b33396b1842139e52a6db78b9adec2c
+
