@@ -16,7 +16,8 @@ pipeline {
         stage('Building image') {
           steps{
             script {
-              dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+             sh "docker build -t ${IMAGE_REPO_NAME} ."
+              //dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
             }
           }
         }
@@ -26,12 +27,12 @@ pipeline {
              steps{
                  script {
 
-                     sh "docker run ${IMAGE_REPO_NAME}"
+                     sh "docker run --rm ${IMAGE_REPO_NAME}"
                  }
              }
         }
 
-        // Logging to AWS ECR
+        /* Logging to AWS ECR
          stage('Logging into AWS ECR') {
             steps {
                 script {
@@ -48,7 +49,7 @@ pipeline {
                            sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
                     }
                 }
-         }
+         }*/
 
     }
 
