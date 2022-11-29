@@ -47,19 +47,11 @@ pipeline {
          steps{
              script {
 
-                    sh "docker run --rm -t -v vol1GatData:/var/lib/gatling gatling-runner -r ${AWS_REPORT_BUCKET} -p ${PROFILE}"
+                 sh "docker run gatling-runner"
              }
            }
         }
-        
-     stage('Create report') {
-        steps{
-           script {
-              sh "./scripts/generateHTMLReport.sh -r ${AWS_REPORT_BUCKET}"
-              gatlingArchive()
-           }
-        }
-    }
+
     }
 }
 
