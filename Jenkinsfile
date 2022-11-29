@@ -27,7 +27,7 @@ pipeline {
              steps{
                  script {
 
-                     sh "docker run --rm ${IMAGE_REPO_NAME} -r ${AWS_REPORT_BUCKET} -p ${PROFILE}"
+                     sh "docker run --rm ${IMAGE_REPO_NAME}"
                  }
              }
         }
