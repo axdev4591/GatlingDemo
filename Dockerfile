@@ -11,12 +11,13 @@ LABEL maintainer="Axel MOUELE <devops4591@gmail.com>"
 #RUN apk --purge -v del py-pip && \
 #    rm /var/cache/apk/*
 
-COPY pom.xml .
 RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.1.2:go-offline
 WORKDIR /gatling
 
 COPY src/ /gatling/src
 COPY bin/run.sh .
+COPY pom.xml .
+
 
 # With the latest scala-maven-plugin, it always wants to download certain libs at runtime without which the build fails
 # Hence install with offline option not possible currently
