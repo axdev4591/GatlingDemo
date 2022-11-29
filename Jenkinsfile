@@ -3,8 +3,8 @@ pipeline {
     environment {
         AWS_ACCOUNT_ID="129676970375"
         AWS_DEFAULT_REGION="us-east-1"
-        IMAGE_REPO_NAME="gatling-runner"
-        IMAGE_TAG="gatling-dockerImage-v1.0.0"
+        IMAGE_REPO_NAME="LoadTest"
+        IMAGE_TAG="gatling-image-v1.0.0"
         AWS_REPORT_BUCKET="gatlingbkt"
         PROFILE="EcrRegistryFullAccessEC2"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
@@ -47,7 +47,7 @@ pipeline {
          steps{
              script {
 
-                 sh "docker run gatling-runner"
+                 sh "docker run ${IMAGE_REPO_NAME}"
              }
            }
         }
