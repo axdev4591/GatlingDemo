@@ -23,14 +23,14 @@ pipeline {
         }
 
          // Run Gatling Image
-        stage('Run Gatling Image') {
+     /*   stage('Run Gatling Image') {
              steps{
                  script {
 
-                     sh "docker run --rm ${IMAGE_REPO_NAME}"
+                    // sh "docker run --rm ${IMAGE_REPO_NAME}"
                  }
              }
-        }
+        }*/
 
         /* Logging to AWS ECR
          stage('Logging into AWS ECR') {
