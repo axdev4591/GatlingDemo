@@ -3,8 +3,8 @@ pipeline {
     environment {
         AWS_ACCOUNT_ID="129676970375"
         AWS_DEFAULT_REGION="us-east-1"
-        IMAGE_REPO_NAME="gatling-load-test"
-        IMAGE_TAG="gatling-image-v1.0.0"
+        IMAGE_REPO_NAME="load-test"
+        IMAGE_TAG="gatling-image-v1.1.0"
         AWS_REPORT_BUCKET="gatlingbkt"
         PROFILE="EcrRegistryFullAccessEC2"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
