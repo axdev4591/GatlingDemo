@@ -2,5 +2,6 @@
 
 # Run gatling load test
 echo "Run gatling load tests."
-mvn gatling:test
+mvn gatling:test '-Dclassname=com.gatling.tests.computerSimulation'
+
 
