@@ -137,54 +137,32 @@
         <plugin>
           <groupId>net.alchim31.maven</groupId>
           <artifactId>scala-maven-plugin</artifactId>
-          <version>${scala-maven-plugin.version}</version>
+          <version>4.4.0</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>compile</goal>
+                <goal>testCompile</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <recompileMode>all</recompileMode>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>de.qaware.maven</groupId>
+          <artifactId>go-offline-maven-plugin</artifactId>
+          <version>1.2.8</version>
+        </plugin>
+        <plugin>
+          <groupId>io.gatling</groupId>
+          <artifactId>gatling-maven-plugin</artifactId>
+          <version>${gatling-maven-plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
 
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.2.0</version>
-      </plugin>
-
-      <plugin>
-        <groupId>net.alchim31.maven</groupId>
-        <artifactId>scala-maven-plugin</artifactId>
-        <version>${scala-maven-plugin.version}</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>testCompile</goal>
-            </goals>
-            <configuration>
-              <args>
-                <arg>-target:jvm-1.8</arg>
-                <arg>-deprecation</arg>
-                <arg>-feature</arg>
-                <arg>-unchecked</arg>
-                <arg>-language:implicitConversions</arg>
-                <arg>-language:postfixOps</arg>
-              </args>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>io.gatling</groupId>
-        <artifactId>gatling-maven-plugin</artifactId>
-        <version>${gatling-maven-plugin.version}</version>
-        <configuration>
-          <failOnError>true</failOnError>
-          <reportsOnly>${reportsOnly}</reportsOnly>
-          <simulationClass>com.gatling.tests.computerSimulation</simulationClass>
-          <jvmArgs>
-            <jvmArg>-Xss20M</jvmArg>
-          </jvmArgs>
-        </configuration>
-      </plugin>
-    </plugins>
   </build>
 </project>
